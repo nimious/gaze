@@ -1,0 +1,7 @@
+nimcache
+libtobiigazecore
+TobiiGazeCore
+.directory
+*.dll
+*.exe
+*.sublime*
