@@ -5,7 +5,7 @@
 # GitHub pull requests are encouraged. (c) 2015 Headcrash Industries LLC.
 
 type
-  tobiigaze_error_code* {.pure, size: sizeof(cint).} = enum
+  TobiigazeErrorCode* {.pure, size: sizeof(cint).} = enum
     success = 0, ## Success
 
     # Generic errors

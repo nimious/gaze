@@ -4,6 +4,9 @@
 # See the file LICENSE included in this distribution for licensing details.
 # GitHub pull requests are encouraged. (c) 2015 Headcrash Industries LLC.
 
+import gazedatatypes, gazeerrorcodes
+
+
 type 
   TobiigazeGazeListener* = proc (gazeData: ptr TobiigazeGazeData;
     gazeDataExtensions: ptr TobiigazeGazeDataExtensions; userData: pointer)
@@ -29,8 +32,8 @@ type
     ## asynchronous commands that do not have any return data.
     ##
     ## errorCode
-    ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-    ##   otherwise to an error code (can be `nil`)
+    ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+    ##   operation was successful, otherwise to an error code (can be `nil`)
     ## userData
     ##   Optional user supplied data that will be passed unmodified to the
     ##   callback function (can be `nil`)
@@ -58,8 +61,8 @@ type
     ## displayArea
     ##   The retrieved Display Area
     ## errorCode
-    ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-    ##   otherwise to an error code (can be `nil`)
+    ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+    ##   operation was successful, otherwise to an error code (can be `nil`)
     ## userData
     ##   Optional user supplied data that will be passed unmodified to the
     ##   callback function (can be `nil`)
@@ -76,8 +79,8 @@ type
     ## deviceInfo
     ##   The retrieved device info
     ## errorCode
-    ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-    ##   otherwise to an error code (can be `nil`)
+    ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+    ##   operation was successful, otherwise to an error code (can be `nil`)
     ## userData
     ##   Optional user supplied data that will be passed unmodified to the
     ##   callback function (can be `nil`)
@@ -85,7 +88,7 @@ type
     ## The callback function will be called when the command is completed.
 
 
-   TobiigazeAsyncTrackboxCallback* = proc (trackBox: ptr TobiigazeTrackBox;
+  TobiigazeAsyncTrackboxCallback* = proc (trackBox: ptr TobiigazeTrackBox;
     errorCode: TobiigazeErrorCode; userData: pointer)
     ## This type is used for the callback function that is registered with
     ## `tobiigazeGetTrackBoxAsync <#tobiigazeGetTrackBoxAsync>`_.
@@ -93,8 +96,8 @@ type
     ## trackBox
     ##   The retrieved Track Box
     ## errorCode
-    ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-    ##   otherwise to an error code (can be `nil`)
+    ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+    ##   operation was successful, otherwise to an error code (can be `nil`)
     ## userData
     ##   Optional user supplied data that will be passed unmodified to the
     ##   callback function (can be `nil`)
@@ -111,8 +114,8 @@ type
     ## geometryMounting
     ##   The retrieved geometry mounting
     ## errorCode
-    ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-    ##   otherwise to an error code (can be `nil`)
+    ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+    ##   operation was successful, otherwise to an error code (can be `nil`)
     ## userData
     ##   Optional user supplied data that will be passed unmodified to the
     ##   callback function (can be `nil`)
@@ -129,8 +132,8 @@ type
     ## calibration
     ##   The retrieved Calibration
     ## errorCode
-    ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-    ##   otherwise to an error code (can be `nil`)
+    ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+    ##   operation was successful, otherwise to an error code (can be `nil`)
     ## userData
     ##   Optional user supplied data that will be passed unmodified to the
     ##   callback function (can be `nil`)
@@ -175,8 +178,8 @@ type
     ## command
     ##   The response command from the eye tracker
     ## errorCode
-    ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-    ##   otherwise to an error code (can be `nil`)
+    ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+    ##   operation was successful, otherwise to an error code (can be `nil`)
     ## userData
     ##   Optional user supplied data that will be passed unmodified to the
     ##   callback function (can be `nil`)
@@ -193,12 +196,12 @@ type
 
 
   TobiigazeAsyncIlluminationsCallback* = proc (
-    modes: ptr tobiigazeIlluminationModes; errorCode: TobiigazeErrorCode;
+    modes: ptr TobiigazeIlluminationModes; errorCode: TobiigazeErrorCode;
     userData: pointer)
   
 
   TobiigazeAsyncIlluminationCallback* = proc (
-    mode: ptr tobiigazeIlluminationMode; errorCode: TobiigazeErrorCode;
+    mode: ptr TobiigazeIlluminationMode; errorCode: TobiigazeErrorCode;
     userData: pointer)
 
 

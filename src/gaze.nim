@@ -6,18 +6,13 @@
 
 {.deadCodeElim: on.}
 
-include
-  gazedatatypes,
-  gazeerrorcodes,
-  gazecallbacktypes
+import gazedatatypes, gazeerrorcodes, gazecallbacktypes
 
 
-when defined(android):
-  const dllname = "libtobiigazecore.so"
-elif defined(linux):
+when defined(linux):
   const dllname = "libtobiigazecore.so"
 elif defined(windows):
-  if defined(amd64):
+  when defined(amd64):
     const dllname = "TobiiGazeCore64.lib"
   else:
     const dllname = "TobiiGazeCore32.lib"
@@ -34,8 +29,8 @@ proc tobiigazeCreate*(url: cstring; errorCode: ptr TobiigazeErrorCode):
   ##   An url identifying the eye tracker. Currently only the tet-tcp protocol
   ##   is defined. Example: "tet-tcp://172.68.195.1".
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
   ## result
   ##   An eye tracker instance, or `nil` if creation failed
 
@@ -84,8 +79,8 @@ proc tobiigazeSetLogging*(filename: cstring; logLevel: TobiigazeLogLevel;
   ## logLevel
   ##   The verbosity of the logging
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
 proc tobiigazeConnectAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
@@ -110,8 +105,8 @@ proc tobiigazeConnect*(eyeTracker: ptr TobiigazeEyeTracker;
   ## eyeTracker
   ##   An eye tracker instance
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
 proc tobiigazeDisconnectAsync*(eyeEracker: ptr TobiigazeEyeTracker; 
@@ -144,8 +139,8 @@ proc tobiigazeRunEventLoop*(eyeTracker: ptr TobiigazeEyeTracker;
   ## eyeTracker
   ##   An eye tracker instance
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
   ##
   ## This is a blocking call and must be called on a dedicated thread.
 
@@ -215,8 +210,8 @@ proc tobiigazeStartTracking*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   A callback function that will be called asynchronously when gaze data is
   ##   available
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
   ## userData
   ##  Optional user supplied data that will be passed unmodified to the callback
   ##  function (can be `nil`)
@@ -244,12 +239,12 @@ proc tobiigazeStopTracking*(eyeTracker: ptr TobiigazeEyeTracker;
   ## eyeTracker
   ##   An eye tracker instance
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
 proc tobiigazeGetDeviceInfoAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
-    callback: tobiigazeAsyncDeviceInfoCallback; userData: pointer)
+    callback: TobiigazeAsyncDeviceInfoCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_device_info_async".}
   ## Get the device info, such as platform, versions etc, asynchronously.
   ##
@@ -272,8 +267,8 @@ proc tobiigazeGetDeviceInfo*(eyeTracker: ptr TobiigazeEyeTracker;
   ## deviceInfo
   ##   Device information out parameter
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
 proc tobiigazeGetTrackBoxAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
@@ -300,11 +295,11 @@ proc tobiigazeGetTrackBox*(eyeTracker: ptr TobiigazeEyeTracker;
   ## trackBox
   ##   Track box information out parameter
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
-proc tobiigazeGetGeometryMounting_async*(eyeTracker: ptr TobiigazeEyeTracker;
+proc tobiigazeGetGeometryMountingAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncGeometryMountingCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_geometry_mounting_async".}
   ## Get the geometry mounting asynchronously.
@@ -329,8 +324,8 @@ proc tobiigazeGetGeometryMounting*(eyeTracker: ptr TobiigazeEyeTracker;
   ## geometryMounting
   ##   Geometry mounting out parameter
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
 proc tobiigazeRegisterKeyProvider*(eyeTracker: ptr TobiigazeEyeTracker; 
@@ -345,8 +340,8 @@ proc tobiigazeRegisterKeyProvider*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   A callback function. Set to `nil` to unregister a previously registered
   ##   callback, that is, use the default key provider.
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
   ## userData
   ##   Optional user supplied data that will be passed unmodified to the
   ##   callback function (can be `nil`)
@@ -364,8 +359,8 @@ proc tobiigazeGetUrl*(eyeTracker: ptr TobiigazeEyeTracker;
   ## eyeTracker
   ##   An eye tracker instance
   ## errorCode
-  ##   Will be set to TOBIIGAZE_ERROR_SUCCESS if operation was successful,
-  ##   otherwise to an error code (can be `nil`)
+  ##   Will be set to `TobiigazeErrorCode.success <#TobiigazeErrorCode>`_ if
+  ##   operation was successful, otherwise to an error code (can be `nil`)
   ## result
   ##   A string containing the URL
 

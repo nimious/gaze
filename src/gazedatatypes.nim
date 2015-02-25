@@ -4,8 +4,13 @@
 # See the file LICENSE included in this distribution for licensing details.
 # GitHub pull requests are encouraged. (c) 2015 Headcrash Industries LLC.
 
-type 
-  TobiigazeLogLevel* {.pure, size: sizeof(cint).} = enum
+type
+  TobiigazeEyeTracker* = object
+    ## Handle for eye trackers.
+
+
+type
+  TobiigazeLogLevel* {.pure, size: sizeof(cint).} = enum ## \
     ## Enumerates the different log levels.
     off = 0,
     debug = 1, 
@@ -15,31 +20,31 @@ type
 
 
 const
-  tobiigazeDeviceInfoMaxSerialNumberLength = 128,
-  tobiigazeDeviceInfoMaxModelLength = 64,
-  tobiigazeDeviceInfoMaxGenerationLength = 64,
-  tobiigazeDeviceInfoMaxFirmwareLength = 128,
-  tobiigazeCalibrationDataCapacity = 4 * 1024 * 1024,
-  tobiigazeKeySize = 32,
-  tobiigazeMaxCalibrationPointDataItems = 512,
-  tobiiUsbDeviceInfoMaxSize = 128,
-  tobiiUsbDeviceAddressMaxSize = 138,
-  tobiiUsbMaxDevices = 9,
-  tobiigazeFrameratesMaxSize = 32,
-  tobiigazeIlluminationModeStringMaxSize = 64,
-  tobiigazeIlluminationModesMaxSize = 16,
-  tobiigazeUnitNameMaxSize = 64,
-  tobiigazeExtensionNameMaxSize = 16,
-  tobiigazeExtensionsMaxSize = 16,
-  tobiigazeMaxWakeOnGazeRegions = 4,
-  tobiigazeAuthorizeChallengeMaxLen = 512,
-  tobiigazeMaxGazeDataExtensions = 32,
-  tobiigazeMaxGazeDataExtensionLength = 256,
+  tobiigazeDeviceInfoMaxSerialNumberLength = 128
+  tobiigazeDeviceInfoMaxModelLength = 64
+  tobiigazeDeviceInfoMaxGenerationLength = 64
+  tobiigazeDeviceInfoMaxFirmwareLength = 128
+  tobiigazeCalibrationDataCapacity = 4 * 1024 * 1024
+  tobiigazeKeySize = 32
+  tobiigazeMaxCalibrationPointDataItems = 512
+  tobiiUsbDeviceInfoMaxSize = 128
+  tobiiUsbDeviceAddressMaxSize = 138
+  tobiiUsbMaxDevices = 9
+  tobiigazeFrameratesMaxSize = 32
+  tobiigazeIlluminationModeStringMaxSize = 64
+  tobiigazeIlluminationModesMaxSize = 16
+  tobiigazeUnitNameMaxSize = 64
+  tobiigazeExtensionNameMaxSize = 16
+  tobiigazeExtensionsMaxSize = 16
+  tobiigazeMaxWakeOnGazeRegions = 4
+  tobiigazeAuthorizeChallengeMaxLen = 512
+  tobiigazeMaxGazeDataExtensions = 32
+  tobiigazeMaxGazeDataExtensionLength = 256
   tobiigazeMaxConfigKeyLength = 128
 
 
-type 
-  TobiigazeTrackingStatus* {.pure, size: sizeof(cint).} = enum
+type
+  TobiigazeTrackingStatus* {.pure, size: sizeof(cint).} = enum ## \
     ## Enumerates the possible gaze tracking statuses.
     noEyesTracked = 0, 
     bothEyesTracked = 1, 
@@ -50,19 +55,19 @@ type
     onlyRightEyeTracked = 6
 
 
-  TobiigazeCalibrationPointStatus* {.pure, size: sizeof(cint).} = enum
+  TobiigazeCalibrationPointStatus* {.pure, size: sizeof(cint).} = enum ## \
     ## Enumerates the possible calibration point statuses.
     failedOrInvalid = - 1, 
     validButNotUsedInCalibration = 0, 
     validAndUsedInCalibration = 1
 
 
-  TobiigazeOption* {.size: sizeof(cint).} = enum
+  TobiigazeOption* {.size: sizeof(cint).} = enum ## \
     ## Enumeratess settable options.
-    timeout = 0 ## Timeout for synchronous operations. Value is of type `cuint`
+    timeout = 0 ## Timeout for synchronous operations. Value is of type`cuint`
 
 
-type 
+type
   TobiigazeDeviceInfo* = object
     ## This struct holds Device Info that is fetched from the Eye Tracker.
     ##
@@ -78,7 +83,8 @@ type
 
 
   TobiigazeCalibration* = object
-    ## This struct holds eye tracker Calibration Data that is fetched from or sent to the Eye Tracker.
+    ## This struct holds eye tracker Calibration Data that is fetched from or
+    ## sent to the Eye Tracker.
     ##
     ## The data array holds null terminated strings.
     data*: array[tobiigazeCalibrationDataCapacity, char] ## The calibration data
@@ -110,9 +116,9 @@ type
       ## rectangle
     top*: cint ## Specifies the y-coordinate of the upper-left corner of a
       ## rectangle
-    right*: cint32 ## Specifies the x-coordinate of the lower-right corner of a
+    right*: cint ## Specifies the x-coordinate of the lower-right corner of a
       ## rectangle
-    bottom*: cint32 ## Specifies the y-coordinate of the lower-right corner of a
+    bottom*: cint ## Specifies the y-coordinate of the lower-right corner of a
       ## rectangle
 
 
@@ -127,10 +133,10 @@ type
   TobiigazeGazeData* = object
     ## This struct holds gaze data reveiced from the eye tracker
     timestamp*: culonglong ## Timestamp for the gaze data
-    trackingStatus*: tobiigazeTrackingStatus ## The combined tracking status for
+    trackingStatus*: TobiigazeTrackingStatus ## The combined tracking status for
       ## both eyes
-    left*: tobiigazeGazeDataEye ## Gaze data for the left eye
-    right*: tobiigazeGazeDataEye ## Gaze data for the right eye
+    left*: TobiigazeGazeDataEye ## Gaze data for the left eye
+    right*: TobiigazeGazeDataEye ## Gaze data for the right eye
 
 
   TobiigazeGazeDataExtension* = object
@@ -145,7 +151,7 @@ type
   TobiigazeGazeDataExtensions* = object
     ## This struct holds a gaze data extension
     extensions*: array[tobiigazeMaxGazeDataExtensions,
-      tobiigazeGazeDataExtension] ## An array of extensions
+      TobiigazeGazeDataExtension] ## An array of extensions
     actualSize*: cuint ## The number of extensions
 
 
@@ -183,11 +189,11 @@ type
       ## the display area where the calibration stimulus was displayed
     leftMapPosition*: TobiigazePoint2df ## The left eye gaze point in normalized
       ## coordinates on the display area after calibration
-    leftStatus*: tobiigazeCalibrationPointStatus ## Status code containing
+    leftStatus*: TobiigazeCalibrationPointStatus ## Status code containing
       ## information about the validity and usage of the left eye data
     rightMapPosition*: TobiigazePoint2df ## The right eye gaze point in
       ## normalized coordinates on the display area after calibration
-    rightStatus*: tobiigazeCalibrationPointStatus ## Status code containing
+    rightStatus*: TobiigazeCalibrationPointStatus ## Status code containing
       ## information about the validity and usage of the right eye data
 
 
@@ -201,7 +207,7 @@ type
 
   TobiigazeFramerates* = object
     ## This structs hold information about available frame rates.
-    framerates*: array[tobiiGazeFramerateMaxSize, cfloat]
+    framerates*: array[tobiigazeFrameratesMaxSize, cfloat]
     actualSize*: cuint
 
 
@@ -289,5 +295,5 @@ type
 
   TobiigazeConfigKey_value* = object
     ## This struct holds configuration information.
-    key*: array[TOBIIGAZEMAX_CONFIG_KEY_LENGTH, char]
-    value*: array[TOBIIGAZEMAX_CONFIG_KEY_LENGTH, char]
+    key*: array[tobiigazeMaxConfigKeyLength, char]
+    value*: array[tobiigazeMAxConfigKeyLength, char]
