@@ -2,6 +2,8 @@
 
 Nim bindings for the Tobii Gaze eye tracking SDK.
 
+![io-gaze Logo](logo.png)
+
 
 ## About
 
@@ -57,4 +59,4 @@ For all other issues related to USB devices visit the libusb web site below.
 
 ## References
 
-TODO
+* [Nim Programming Language](http://nim-lang.org/)
