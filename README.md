@@ -1,7 +1,6 @@
 # gaze
 
 Nim bindings for the Tobii Gaze eye tracking SDK.
-
 ![gaze Logo](docs/logo.png)
 
 
