@@ -7,6 +7,17 @@
 import gazedatatypes, gazeerrorcodes
 
 
+when defined(linux):
+  const dllname = "libtobiigazecore.so"
+elif defined(windows):
+  when defined(amd64):
+    const dllname = "TobiiGazeCore64.lib"
+  else:
+    const dllname = "TobiiGazeCore32.lib"
+else:
+  {.error: "gaze does not support this platform".}
+
+
 proc tobiigazeListUsbEyeTrackers*(deviceInfos: ptr UsbDeviceInfo;
   deviceInfosCap: cint; deviceInfosSize: ptr cint;
   errorCode: ptr TobiigazeErrorCode)

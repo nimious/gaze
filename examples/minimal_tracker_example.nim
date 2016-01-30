@@ -10,7 +10,7 @@ import gaze, gazedatatypes, gazeerrorcodes
 # This is a simple example that demonstrates the synchronous TobiiGazeCore
 # calls. It prints gaze data for 20 seconds.
 
-const urlSize = 256
+#const urlSize = 256
 
 
 proc onGazeData(gazeData: ptr TobiigazeGazeData,

@@ -7,6 +7,17 @@
 import gazecallbacktypes, gazedatatypes, gazeerrorcodes
 
 
+when defined(linux):
+  const dllname = "libtobiigazecore.so"
+elif defined(windows):
+  when defined(amd64):
+    const dllname = "TobiiGazeCore64.lib"
+  else:
+    const dllname = "TobiiGazeCore32.lib"
+else:
+  {.error: "gaze does not support this platform".}
+
+
 proc tobiigazeCalibrationStartAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_calibration_start_async".}
@@ -166,7 +177,7 @@ proc tobiigazeSetCalibration*(eyeTracker: ptr TobiigazeEyeTracker;
 
 
 proc tobiigazeGetCalibrationPointDataItems*(
-  calibration: ptr tobiigaze_calibration;
+  calibration: ptr TobiigazeCalibration;
   pointDataItems: ptr TobiigazeCalibrationPointData;
   pointDataItemsCapacity: cint; pointDataItemsSize: ptr cint;
   errorCode: ptr TobiigazeErrorCode)

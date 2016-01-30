@@ -10,7 +10,7 @@ type
 
 
 type
-  TobiigazeLogLevel* {.pure, size: sizeof(cint).} = enum ## \
+  TobiigazeLogLevel* {.pure, size: sizeof(cint).} = enum
     ## Enumerates the different log levels.
     off = 0,
     debug = 1,
@@ -20,31 +20,31 @@ type
 
 
 const
-  tobiigazeDeviceInfoMaxSerialNumberLength = 128
-  tobiigazeDeviceInfoMaxModelLength = 64
-  tobiigazeDeviceInfoMaxGenerationLength = 64
-  tobiigazeDeviceInfoMaxFirmwareLength = 128
-  tobiigazeCalibrationDataCapacity = 4 * 1024 * 1024
-  tobiigazeKeySize = 32
-  tobiigazeMaxCalibrationPointDataItems = 512
-  tobiiUsbDeviceInfoMaxSize = 128
-  tobiiUsbDeviceAddressMaxSize = 138
-  tobiiUsbMaxDevices = 9
-  tobiigazeFrameratesMaxSize = 32
-  tobiigazeIlluminationModeStringMaxSize = 64
-  tobiigazeIlluminationModesMaxSize = 16
-  tobiigazeUnitNameMaxSize = 64
-  tobiigazeExtensionNameMaxSize = 16
-  tobiigazeExtensionsMaxSize = 16
-  tobiigazeMaxWakeOnGazeRegions = 4
-  tobiigazeAuthorizeChallengeMaxLen = 512
-  tobiigazeMaxGazeDataExtensions = 32
-  tobiigazeMaxGazeDataExtensionLength = 256
-  tobiigazeMaxConfigKeyLength = 128
+  tobiigazeDeviceInfoMaxSerialNumberLength* = 128
+  tobiigazeDeviceInfoMaxModelLength* = 64
+  tobiigazeDeviceInfoMaxGenerationLength* = 64
+  tobiigazeDeviceInfoMaxFirmwareLength* = 128
+  tobiigazeCalibrationDataCapacity* = 4 * 1024 * 1024
+  tobiigazeKeySize* = 32
+  tobiigazeMaxCalibrationPointDataItems* = 512
+  tobiiUsbDeviceInfoMaxSize* = 128
+  tobiiUsbDeviceAddressMaxSize* = 138
+  tobiiUsbMaxDevices* = 9
+  tobiigazeFrameratesMaxSize* = 32
+  tobiigazeIlluminationModeStringMaxSize* = 64
+  tobiigazeIlluminationModesMaxSize* = 16
+  tobiigazeUnitNameMaxSize* = 64
+  tobiigazeExtensionNameMaxSize* = 16
+  tobiigazeExtensionsMaxSize* = 16
+  tobiigazeMaxWakeOnGazeRegions* = 4
+  tobiigazeAuthorizeChallengeMaxLen* = 512
+  tobiigazeMaxGazeDataExtensions* = 32
+  tobiigazeMaxGazeDataExtensionLength* = 256
+  tobiigazeMaxConfigKeyLength* = 128
 
 
 type
-  TobiigazeTrackingStatus* {.pure, size: sizeof(cint).} = enum ## \
+  TobiigazeTrackingStatus* {.pure, size: sizeof(cint).} = enum
     ## Enumerates the possible gaze tracking statuses.
     noEyesTracked = 0,
     bothEyesTracked = 1,
@@ -55,14 +55,14 @@ type
     onlyRightEyeTracked = 6
 
 
-  TobiigazeCalibrationPointStatus* {.pure, size: sizeof(cint).} = enum ## \
+  TobiigazeCalibrationPointStatus* {.pure, size: sizeof(cint).} = enum
     ## Enumerates the possible calibration point statuses.
     failedOrInvalid = - 1,
     validButNotUsedInCalibration = 0,
     validAndUsedInCalibration = 1
 
 
-  TobiigazeOption* {.size: sizeof(cint).} = enum ## \
+  TobiigazeOption* {.size: sizeof(cint).} = enum
     ## Enumeratess settable options.
     timeout = 0 ## Timeout for synchronous operations. Value is of type`cuint`
 
@@ -72,14 +72,14 @@ type
     ## This struct holds Device Info that is fetched from the Eye Tracker.
     ##
     ## The char arrays holds null terminated strings.
-    serialNumber*: array[tobiigazeDeviceInfoMaxSerialNumberLength, char] ## The
-      ## serial number of the eye tracker
-    model*: array[tobiigazeDeviceInfoMaxModelLength, char] ## The eye tracker
-      ## model, e.g. "REXDEV_Laptop"
-    generation*: array[tobiigazeDeviceInfoMaxGenerationLength, char] ## The eye
-      ## tracker generation, e.g. G5
-    firmwareVersion*: array[tobiigazeDeviceInfoMaxFirmwareLength, char] ## The
-      ## eye tracker serial number
+    serialNumber*: array[tobiigazeDeviceInfoMaxSerialNumberLength, char]
+      ## The serial number of the eye tracker
+    model*: array[tobiigazeDeviceInfoMaxModelLength, char]
+      ## The eye tracker model, e.g. "REXDEV_Laptop"
+    generation*: array[tobiigazeDeviceInfoMaxGenerationLength, char]
+      ## The eye tracker generation, e.g. G5
+    firmwareVersion*: array[tobiigazeDeviceInfoMaxFirmwareLength, char]
+      ## The eye tracker serial number
 
 
   TobiigazeCalibration* = object
@@ -87,39 +87,48 @@ type
     ## sent to the Eye Tracker.
     ##
     ## The data array holds null terminated strings.
-    data*: array[tobiigazeCalibrationDataCapacity, char] ## The calibration data
-    actualSize*: cuint ## The length of the calibration data
+    data*: array[tobiigazeCalibrationDataCapacity, char]
+      ## The calibration data
+    actualSize*: cuint
+      ## The length of the calibration data
 
 
   TobiigazePoint2d* = object
     ## This struct holds a two dimensional point.
-    x*: cdouble ## X coordinate
-    y*: cdouble ## Y coordinate
+    x*: cdouble
+      ## X coordinate
+    y*: cdouble
+      ## Y coordinate
 
 
   TobiigazePoint2df* = object
     ## This struct holds a two dimensional point.
-    x*: cfloat ## X coordinate
-    y*: cfloat ## Y coordinate
+    x*: cfloat
+      ## X coordinate
+    y*: cfloat
+      ## Y coordinate
 
 
   TobiigazePoint3d* = object
     ## This struct holds a three dimensional point.
-    x*: cdouble ## X coordinate
-    y*: cdouble ## Y coordinate
-    z*: cdouble ## Z coordinate
+    x*: cdouble
+      ## X coordinate
+    y*: cdouble
+      ## Y coordinate
+    z*: cdouble
+      ## Z coordinate
 
 
   TobiigazeRect* = object
     ## This struct holds a rectangle.
-    left*: cint ## Specifies the x-coordinate of the upper-left corner of a
-      ## rectangle
-    top*: cint ## Specifies the y-coordinate of the upper-left corner of a
-      ## rectangle
-    right*: cint ## Specifies the x-coordinate of the lower-right corner of a
-      ## rectangle
-    bottom*: cint ## Specifies the y-coordinate of the lower-right corner of a
-      ## rectangle
+    left*: cint
+      ## Specifies the x-coordinate of the upper-left corner of a rectangle
+    top*: cint
+      ## Specifies the y-coordinate of the upper-left corner of a rectangle
+    right*: cint
+      ## Specifies the x-coordinate of the lower-right corner of a rectangle
+    bottom*: cint
+      ## Specifies the y-coordinate of the lower-right corner of a rectangle
 
 
   TobiigazeGazeDataEye* = object
@@ -132,27 +141,33 @@ type
 
   TobiigazeGazeData* = object
     ## This struct holds gaze data reveiced from the eye tracker
-    timestamp*: culonglong ## Timestamp for the gaze data
-    trackingStatus*: TobiigazeTrackingStatus ## The combined tracking status for
-      ## both eyes
-    left*: TobiigazeGazeDataEye ## Gaze data for the left eye
-    right*: TobiigazeGazeDataEye ## Gaze data for the right eye
+    timestamp*: culonglong
+      ## Timestamp for the gaze data
+    trackingStatus*: TobiigazeTrackingStatus
+      ## The combined tracking status for both eyes
+    left*: TobiigazeGazeDataEye
+      ## Gaze data for the left eye
+    right*: TobiigazeGazeDataEye
+      ## Gaze data for the right eye
 
 
   TobiigazeGazeDataExtension* = object
     ## This struct holds a gaze data extension.
-    columnId*: cuint ## The id of the extension which uniquely identifies it
-    data*: array[tobiigazeMaxGazeDataExtensionLength, char] ## The extension
-      ## data. Use the helper functions in tobiigazeExt.h to convert this data
-      ## to types
-    actualSize*: cuint ## The size of the data
+    columnId*: cuint
+      ## The id of the extension which uniquely identifies it
+    data*: array[tobiigazeMaxGazeDataExtensionLength, char]
+      ## The extension data
+    actualSize*: cuint
+      ## The size of the data
 
 
   TobiigazeGazeDataExtensions* = object
     ## This struct holds a gaze data extension
     extensions*: array[tobiigazeMaxGazeDataExtensions,
-      TobiigazeGazeDataExtension] ## An array of extensions
-    actualSize*: cuint ## The number of extensions
+      TobiigazeGazeDataExtension]
+      ## An array of extensions
+    actualSize*: cuint
+      ## The number of extensions
 
 
   TobiigazeTrackBox* = object
@@ -161,40 +176,57 @@ type
     ##
     ## Front means closer to the eye tracker.
     ## Left and right are as seen by the user.
-    frontUpperRightPoint*: TobiigazePoint3d ## Front upper right point
-    frontUpperLeftPoint*: TobiigazePoint3d ## Front upper left point
-    frontLowerLeftPoint*: TobiigazePoint3d ## Front lower left point
-    frontLowerRightPoint*: TobiigazePoint3d ## Front lower right point
-    backUpperRightPoint*: TobiigazePoint3d ## Back upper right point
-    backUpperLeftPoint*: TobiigazePoint3d ## Back upper left point
-    backLowerLeftPoint*: TobiigazePoint3d ## Back lower left point
-    backLowerRightPoint*: TobiigazePoint3d ## Back lower right point
+    frontUpperRightPoint*: TobiigazePoint3d
+      ## Front upper right point
+    frontUpperLeftPoint*: TobiigazePoint3d
+      ## Front upper left point
+    frontLowerLeftPoint*: TobiigazePoint3d
+      ## Front lower left point
+    frontLowerRightPoint*: TobiigazePoint3d
+      ## Front lower right point
+    backUpperRightPoint*: TobiigazePoint3d
+      ## Back upper right point
+    backUpperLeftPoint*: TobiigazePoint3d
+      ## Back upper left point
+    backLowerLeftPoint*: TobiigazePoint3d
+      ## Back lower left point
+    backLowerRightPoint*: TobiigazePoint3d
+      ## Back lower right point
 
 
   TobiigazeDisplayArea* = object
     ## This struct holds a display area.
-    topLeft*: TobiigazePoint3d ## Upper left point
-    topRight*: TobiigazePoint3d ## Upper right point
-    bottomLeft*: TobiigazePoint3d ## Lower left point
+    topLeft*: TobiigazePoint3d
+      ## Upper left point
+    topRight*: TobiigazePoint3d
+      ## Upper right point
+    bottomLeft*: TobiigazePoint3d
+      ## Lower left point
 
 
   TobiigazeKey* = object
     ## This struct holds a key for unlocking an eye tracker.
-    data*: array[tobiigazeKeySize, char] ## The key
+    data*: array[tobiigazeKeySize, char]
+      ## The key
 
 
   TobiigazeCalibrationPointData* = object
     ## Contains data about a calibration point sample.
-    truePosition*: TobiigazePoint2df ## The point in normalized coordinates on
-      ## the display area where the calibration stimulus was displayed
-    leftMapPosition*: TobiigazePoint2df ## The left eye gaze point in normalized
-      ## coordinates on the display area after calibration
-    leftStatus*: TobiigazeCalibrationPointStatus ## Status code containing
-      ## information about the validity and usage of the left eye data
-    rightMapPosition*: TobiigazePoint2df ## The right eye gaze point in
-      ## normalized coordinates on the display area after calibration
-    rightStatus*: TobiigazeCalibrationPointStatus ## Status code containing
-      ## information about the validity and usage of the right eye data
+    truePosition*: TobiigazePoint2df
+      ## The point in normalized coordinates on the display area where the
+      ## calibration stimulus was displayed
+    leftMapPosition*: TobiigazePoint2df
+      ## The left eye gaze point in normalized coordinates on the display area
+      ## after calibration
+    leftStatus*: TobiigazeCalibrationPointStatus
+      ## Status code containing information about the validity and usage of the
+      ## left eye data
+    rightMapPosition*: TobiigazePoint2df
+      ## The right eye gaze point in normalized coordinates on the display area
+      ## after calibration
+    rightStatus*: TobiigazeCalibrationPointStatus
+      ## Status code containing information about the validity and usage of the
+      ## right eye data
 
 
   UsbDeviceInfo* = object

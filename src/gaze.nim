@@ -17,7 +17,7 @@ elif defined(windows):
   else:
     const dllname = "TobiiGazeCore32.lib"
 else:
-  {.error: "io-gaze does not support this platform".}
+  {.error: "gaze does not support this platform".}
 
 
 proc tobiigazeCreate*(url: cstring; errorCode: ptr TobiigazeErrorCode):

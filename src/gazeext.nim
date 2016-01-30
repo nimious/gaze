@@ -4,7 +4,18 @@
 # See the file LICENSE included in this distribution for licensing details.
 # GitHub pull requests are encouraged. (c) 2015 Headcrash Industries LLC.
 
-import gazecallbacks, gazedatatypes, gazeerrorcodes
+import gazecallbacktypes, gazedatatypes, gazeerrorcodes
+
+
+when defined(linux):
+  const dllname = "libtobiigazecore.so"
+elif defined(windows):
+  when defined(amd64):
+    const dllname = "TobiiGazeCore64.lib"
+  else:
+    const dllname = "TobiiGazeCore32.lib"
+else:
+  {.error: "gaze does not support this platform".}
 
 
 proc tobiigazeSendCustomCommand*(eyeTracker: ptr TobiigazeEyeTracker;

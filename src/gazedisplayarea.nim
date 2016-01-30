@@ -7,6 +7,17 @@
 import gazecallbacktypes, gazedatatypes, gazeerrorcodes
 
 
+when defined(linux):
+  const dllname = "libtobiigazecore.so"
+elif defined(windows):
+  when defined(amd64):
+    const dllname = "TobiiGazeCore64.lib"
+  else:
+    const dllname = "TobiiGazeCore32.lib"
+else:
+  {.error: "gaze does not support this platform".}
+
+
 proc tobiigazeGetDisplayAreaAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncDisplayAreaCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_display_area_async".}
