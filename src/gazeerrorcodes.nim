@@ -1,4 +1,4 @@
-# *io-gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
+# *gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
 #
 # This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
 # See the file LICENSE included in this distribution for licensing details.
@@ -36,10 +36,10 @@ type
     fwUnsupportedOperation = 0x20000501,
     fwOperationFailed = 0x20000502,
     fwInvalidPayload = 0x20000503,
-    fwUnknownId = 0x20000504, 
-    fwUnauthorized = 0x20000505, 
-    fwExtensionRequired = 0x20000506, 
-    fwInternalError = 0x20000507, 
-    fwStateError = 0x20000508, 
-    fwInvalidParameter = 0x20000509, 
+    fwUnknownId = 0x20000504,
+    fwUnauthorized = 0x20000505,
+    fwExtensionRequired = 0x20000506,
+    fwInternalError = 0x20000507,
+    fwStateError = 0x20000508,
+    fwInvalidParameter = 0x20000509,
     fwOperationAborted = 0x2000050A

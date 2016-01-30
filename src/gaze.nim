@@ -1,4 +1,4 @@
-## *io-gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
+## *gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
 ##
 ## This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
 ## See the file LICENSE included in this distribution for licensing details.
@@ -43,7 +43,7 @@ proc tobiigazeDestroy*(eyeTracker: ptr TobiigazeEyeTracker)
   ##   An eye tracker instance
 
 
-proc tobiigazeRegisterErrorCallback*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeRegisterErrorCallback*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_register_error_callback".}
   ## Register a callback that will return an error code when a spontaneous error
@@ -69,7 +69,7 @@ proc tobiigazeGetVersion*(): cstring
   ##   The version of the library of the form "1.0.2"
 
 
-proc tobiigazeSetLogging*(filename: cstring; logLevel: TobiigazeLogLevel; 
+proc tobiigazeSetLogging*(filename: cstring; logLevel: TobiigazeLogLevel;
   errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_version".}
   ## Set the logging output filename and verbosity.
@@ -83,7 +83,7 @@ proc tobiigazeSetLogging*(filename: cstring; logLevel: TobiigazeLogLevel;
   ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
-proc tobiigazeConnectAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeConnectAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_connect_async".}
   ## Connect to an eye tracker asynchronously.
@@ -97,7 +97,7 @@ proc tobiigazeConnectAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   callback function (can be `nil`)
 
 
-proc tobiigazeConnect*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeConnect*(eyeTracker: ptr TobiigazeEyeTracker;
   errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_connect".}
   ## Connect to an eye tracker synchronously.
@@ -109,7 +109,7 @@ proc tobiigazeConnect*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
-proc tobiigazeDisconnectAsync*(eyeEracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeDisconnectAsync*(eyeEracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncBasicCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_disconnect_async".}
   ## Disonnect from an eye tracker asynchronously.
@@ -131,7 +131,7 @@ proc tobiigazeDisconnect*(eyeTracker: ptr TobiigazeEyeTracker)
   ##   An eye tracker instance
 
 
-proc tobiigazeRunEventLoop*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeRunEventLoop*(eyeTracker: ptr TobiigazeEyeTracker;
   errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_run_event_loop".}
   ## Run the event loop.
@@ -179,8 +179,8 @@ proc tobiigazeBreakEventLoop*(eyeTracker: ptr TobiigazeEyeTracker)
   ## a new event loop on the same eye tracker instance.
 
 
-proc tobiigazeStartTrackingAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
-  callback: TobiigazeAsyncCallback; gazeCallback: TobiigazeGazeListener; 
+proc tobiigazeStartTrackingAsync*(eyeTracker: ptr TobiigazeEyeTracker;
+  callback: TobiigazeAsyncCallback; gazeCallback: TobiigazeGazeListener;
   userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_start_tracking_async".}
   ## Start gaze tracking asynchronously.
@@ -198,8 +198,8 @@ proc tobiigazeStartTrackingAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   callback function (can be `nil`)
 
 
-proc tobiigazeStartTracking*(eyeTracker: ptr TobiigazeEyeTracker; 
-  gazeCallback: TobiigazeGazeListener; errorCode: ptr TobiigazeErrorCode; 
+proc tobiigazeStartTracking*(eyeTracker: ptr TobiigazeEyeTracker;
+  gazeCallback: TobiigazeGazeListener; errorCode: ptr TobiigazeErrorCode;
   userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_start_tracking".}
   ## Start gaze tracking synchronously.
@@ -217,7 +217,7 @@ proc tobiigazeStartTracking*(eyeTracker: ptr TobiigazeEyeTracker;
   ##  function (can be `nil`)
 
 
-proc tobiigazeStopTrackingAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeStopTrackingAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_start_tracking".}
   ## Stop gaze tracking asynchronously.
@@ -231,7 +231,7 @@ proc tobiigazeStopTrackingAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   callback function (can be `nil`)
 
 
-proc tobiigazeStopTracking*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeStopTracking*(eyeTracker: ptr TobiigazeEyeTracker;
   errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_stop_tracking".}
   ## Stop gaze tracking synchronously.
@@ -243,7 +243,7 @@ proc tobiigazeStopTracking*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
-proc tobiigazeGetDeviceInfoAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeGetDeviceInfoAsync*(eyeTracker: ptr TobiigazeEyeTracker;
     callback: TobiigazeAsyncDeviceInfoCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_device_info_async".}
   ## Get the device info, such as platform, versions etc, asynchronously.
@@ -257,7 +257,7 @@ proc tobiigazeGetDeviceInfoAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   ##  callback function (can be `nil`)
 
 
-proc tobiigazeGetDeviceInfo*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeGetDeviceInfo*(eyeTracker: ptr TobiigazeEyeTracker;
   deviceInfo: ptr TobiigazeDeviceInfo; errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_device_info".}
   ## Get the device info, such as platform, versions etc, synchronously.
@@ -271,7 +271,7 @@ proc tobiigazeGetDeviceInfo*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
-proc tobiigazeGetTrackBoxAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeGetTrackBoxAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncTrackboxCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_track_box_async".}
   ## Get the track box asynchronously.
@@ -313,7 +313,7 @@ proc tobiigazeGetGeometryMountingAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   callback function (can be `nil`)
 
 
-proc tobiigazeGetGeometryMounting*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeGetGeometryMounting*(eyeTracker: ptr TobiigazeEyeTracker;
   geometryMounting: ptr TobiigazeGeometryMounting;
   errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_geometry_mounting".}
@@ -328,8 +328,8 @@ proc tobiigazeGetGeometryMounting*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
-proc tobiigazeRegisterKeyProvider*(eyeTracker: ptr TobiigazeEyeTracker; 
-  callback: TobiigazeKeyProviderCallback; errorCode: ptr TobiigazeErrorCode; 
+proc tobiigazeRegisterKeyProvider*(eyeTracker: ptr TobiigazeEyeTracker;
+  callback: TobiigazeKeyProviderCallback; errorCode: ptr TobiigazeErrorCode;
   userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_register_key_provider".}
   ## Register a callback providing a key for unlocking the eye tracker.
@@ -351,7 +351,7 @@ proc tobiigazeRegisterKeyProvider*(eyeTracker: ptr TobiigazeEyeTracker;
   ## Registering a key provider disables the built-in default key.
 
 
-proc tobiigazeGetUrl*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeGetUrl*(eyeTracker: ptr TobiigazeEyeTracker;
                         errorCode: ptr TobiigazeErrorCode): cstring
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_url".}
   ## Get the URL associated with the eye tracker instance.

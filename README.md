@@ -1,8 +1,8 @@
-# io-gaze
+# gaze
 
 Nim bindings for the Tobii Gaze eye tracking SDK.
 
-![io-gaze Logo](logo.png)
+![gaze Logo](docs/logo.png)
 
 
 ## About
@@ -11,8 +11,8 @@ Nim bindings for the Tobii Gaze eye tracking SDK.
 
 ## Supported Platforms
 
-io-gaze is still under development and does not work yet. So far, the
-following platforms have been built and tested:
+This package is still under development and does not work yet. The following
+platforms have been built and tested:
 
 - ~~Android~~
 - ~~Linux~~
@@ -36,7 +36,7 @@ TODO
 
 ## Dependencies
 
-io-gaze does not have any dependencies to other Nim packages at this time.
+This package does not have any dependencies to other Nim packages at this time.
 
 
 ## Usage
@@ -51,8 +51,8 @@ import gaze
 
 ## Support
 
-Please [file an issue](https://github.com/nimious/io-gaze/issues), submit a
-[pull request](https://github.com/nimious/io-gaze/pulls?q=is%3Aopen+is%3Apr)
+Please [file an issue](https://github.com/nimious/gaze/issues), submit a
+[pull request](https://github.com/nimious/gaze/pulls?q=is%3Aopen+is%3Apr)
 or email us at info@nimio.us if this package is out of date or contains bugs.
 For all other issues related to USB devices visit the libusb web site below.
 

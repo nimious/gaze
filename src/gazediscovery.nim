@@ -1,4 +1,4 @@
-# *io-gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
+# *gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
 #
 # This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
 # See the file LICENSE included in this distribution for licensing details.
@@ -26,7 +26,7 @@ proc tobiigazeListUsbEyeTrackers*(deviceInfos: ptr UsbDeviceInfo;
   ##   operation was successful, otherwise to an error code (can be `nil`).
 
 
-proc tobiigazeGetConnectedEyeTracker*(url: cstring; urlSize: cint; 
+proc tobiigazeGetConnectedEyeTracker*(url: cstring; urlSize: cint;
   errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_connected_eye_tracker".}
   ## Get the URL to a connected eye tracker. If mutliple eye trackers are

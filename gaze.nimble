@@ -1,5 +1,5 @@
 [Package]
-name: "io-gaze"
+name: "gaze"
 version: "0.1"
 author: "Gerke Max Preussner <info@nimio.us>"
 description: "Bindings for the Tobii Gaze eye tracking SDK"

@@ -1,4 +1,4 @@
-# *io-gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
+# *gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
 #
 # This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
 # See the file LICENSE included in this distribution for licensing details.
@@ -13,9 +13,9 @@ type
   TobiigazeLogLevel* {.pure, size: sizeof(cint).} = enum ## \
     ## Enumerates the different log levels.
     off = 0,
-    debug = 1, 
+    debug = 1,
     info = 2,
-    warning = 3, 
+    warning = 3,
     error = 4
 
 
@@ -46,19 +46,19 @@ const
 type
   TobiigazeTrackingStatus* {.pure, size: sizeof(cint).} = enum ## \
     ## Enumerates the possible gaze tracking statuses.
-    noEyesTracked = 0, 
-    bothEyesTracked = 1, 
-    onlyLeftEyeTracked = 2, 
-    oneEyeTrackedProbablyLeft = 3, 
-    oneEyeTrackedUnknownWhich = 4, 
-    oneEyeTrackedProbablyRight = 5, 
+    noEyesTracked = 0,
+    bothEyesTracked = 1,
+    onlyLeftEyeTracked = 2,
+    oneEyeTrackedProbablyLeft = 3,
+    oneEyeTrackedUnknownWhich = 4,
+    oneEyeTrackedProbablyRight = 5,
     onlyRightEyeTracked = 6
 
 
   TobiigazeCalibrationPointStatus* {.pure, size: sizeof(cint).} = enum ## \
     ## Enumerates the possible calibration point statuses.
-    failedOrInvalid = - 1, 
-    validButNotUsedInCalibration = 0, 
+    failedOrInvalid = - 1,
+    validButNotUsedInCalibration = 0,
     validAndUsedInCalibration = 1
 
 
@@ -218,7 +218,7 @@ type
 
   TobiigazeIlluminationModes* = object
     ## This struct contains a list of all supported illumination modes.
-    data*: array[tobiigazeIlluminationModeStringMaxSize, 
+    data*: array[tobiigazeIlluminationModeStringMaxSize,
       array[tobiigazeIlluminationModesMaxSize, char]]
     actualSize*: cuint
 
@@ -255,12 +255,12 @@ type
     actualSize*: cuint
 
 
-  TobiigazeWakeOnGazeRegion* = object 
+  TobiigazeWakeOnGazeRegion* = object
     upperLeft*: TobiigazePoint2d
     lowerRight*: TobiigazePoint2d
 
 
-  TobiigazeWakeOnGazeConfiguration* = object 
+  TobiigazeWakeOnGazeConfiguration* = object
     dwellTime*: cuint # milliseconds
     region*: array[tobiigazeMaxWakeOnGazeRegions, TobiigazeWakeOnGazeRegion]
     actualSize*: cuint
@@ -274,7 +274,7 @@ type
     internalOffset*: TobiigazePoint3d
 
 
-  TobiigazeAuthorizeChallenge* = object 
+  TobiigazeAuthorizeChallenge* = object
     realmId*: cint
     algorithm*: cint
     challenge*: array[tobiigazeAuthorizeChallengeMaxLen, char]

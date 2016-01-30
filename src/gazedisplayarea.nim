@@ -1,4 +1,4 @@
-# *io-gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
+# *gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
 #
 # This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
 # See the file LICENSE included in this distribution for licensing details.
@@ -7,7 +7,7 @@
 import gazecallbacktypes, gazedatatypes, gazeerrorcodes
 
 
-proc tobiigazeGetDisplayAreaAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeGetDisplayAreaAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncDisplayAreaCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_display_area_async".}
   ## Get the display area of the device asynchronously.
@@ -21,8 +21,8 @@ proc tobiigazeGetDisplayAreaAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   callback function (can be `nil`)
 
 
-proc tobiigazeSetDisplayAreaAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
-  displayArea: ptr TobiigazeDisplayArea; callback: TobiigazeAsyncCallback; 
+proc tobiigazeSetDisplayAreaAsync*(eyeTracker: ptr TobiigazeEyeTracker;
+  displayArea: ptr TobiigazeDisplayArea; callback: TobiigazeAsyncCallback;
   userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_set_display_area_async".}
   ## Set the display area of the device asynchronously.
@@ -42,7 +42,7 @@ proc tobiigazeSetDisplayAreaAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   ## callback if the connected Eye Tracker does not support the operation.
 
 
-proc tobiigazeGetDisplayArea*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeGetDisplayArea*(eyeTracker: ptr TobiigazeEyeTracker;
   displayArea: ptr TobiigazeDisplayArea; errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_display_area".}
   ## Get the display area synchronously.
@@ -56,7 +56,7 @@ proc tobiigazeGetDisplayArea*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
-proc tobiigazeSetDisplayArea*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeSetDisplayArea*(eyeTracker: ptr TobiigazeEyeTracker;
   displayArea: ptr TobiigazeDisplayArea; errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_set_display_area".}
   ## Sets the display area synchronously.

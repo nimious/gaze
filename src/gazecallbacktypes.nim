@@ -1,4 +1,4 @@
-# *io-gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
+# *gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
 #
 # This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
 # See the file LICENSE included in this distribution for licensing details.
@@ -7,7 +7,7 @@
 import gazedatatypes, gazeerrorcodes
 
 
-type 
+type
   TobiigazeGazeListener* = proc (gazeData: ptr TobiigazeGazeData;
     gazeDataExtensions: ptr TobiigazeGazeDataExtensions; userData: pointer)
     ## This type is used for the callback function that is registered with
@@ -71,7 +71,7 @@ type
 
 
   TobiigazeAsyncDeviceInfoCallback* = proc (
-    deviceInfo: ptr TobiigazeDeviceInfo; errorCode: TobiigazeErrorCode; 
+    deviceInfo: ptr TobiigazeDeviceInfo; errorCode: TobiigazeErrorCode;
     userData: pointer)
     ## This type is used for the callback function that is registered with
     ## `tobiigazeGetDeviceInfoAsync <#tobiigazeGetDeviceInfoAsync>`_.
@@ -124,7 +124,7 @@ type
 
 
   TobiigazeAsyncCalibrationCallback* = proc (
-    calibration: ptr TobiigazeCalibration; errorCode: TobiigazeErrorCode; 
+    calibration: ptr TobiigazeCalibration; errorCode: TobiigazeErrorCode;
     userData: pointer)
     ## This type is used for the callback function that is registered with
     ## `tobiigazeGetCalibrationAsync <#tobiigazeGetCalibrationAsync>`_.
@@ -170,7 +170,7 @@ type
 
 
   TobiigazeAsyncCustomCommandCallback* = proc (
-    command: ptr TobiigazeCustomCommand; errorCode: TobiigazeErrorCode; 
+    command: ptr TobiigazeCustomCommand; errorCode: TobiigazeErrorCode;
     userData: pointer)
     ## This type is used for the callback function that is registered with
     ## `tobiigazeSendCustomCommandAsync <#tobiigazeSendCustomCommandAsync>`_.
@@ -198,7 +198,7 @@ type
   TobiigazeAsyncIlluminationsCallback* = proc (
     modes: ptr TobiigazeIlluminationModes; errorCode: TobiigazeErrorCode;
     userData: pointer)
-  
+
 
   TobiigazeAsyncIlluminationCallback* = proc (
     mode: ptr TobiigazeIlluminationMode; errorCode: TobiigazeErrorCode;
@@ -207,11 +207,11 @@ type
 
   TobiigazeAsyncDiagonsticsReportCallback* = proc (blob: ptr TobiigazeBlob;
     errorCode: TobiigazeErrorCode; userData: pointer)
-  
+
 
   TobiigazeAsyncLow_blinkModeCallback* = proc (low_blink: ptr cuint;
       errorCode: TobiigazeErrorCode; userData: pointer)
-  
+
 
   TobiigazeAsyncUnitNameCallback* = proc (
       unitName: ptr TobiigazeUnitName; errorCode: TobiigazeErrorCode;

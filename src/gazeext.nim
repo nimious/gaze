@@ -1,4 +1,4 @@
-# *io-gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
+# *gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
 #
 # This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
 # See the file LICENSE included in this distribution for licensing details.
@@ -76,7 +76,7 @@ proc tobiigazeGazeDataExtensionToUint32*(
 
 
 proc tobiigazeGazeDataExtensionToFloat*(
-    extension: ptr TobiigazeGazeDataExtension; 
+    extension: ptr TobiigazeGazeDataExtension;
     errorCode: ptr TobiigazeErrorCode): cfloat
   {.cdecl, dynlib: dllname, importc: "tobiigaze_gaze_data_extension_to_float".}
   ## Translate raw extension bytes to a float.
@@ -94,7 +94,7 @@ proc tobiigazeGazeDataExtensionToFloat*(
 
 
 proc tobiigazeGazeDataExtensionToString*(
-  extension: ptr TobiigazeGazeDataExtension; destination: cstring; 
+  extension: ptr TobiigazeGazeDataExtension; destination: cstring;
   capacity: cint; errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_gaze_data_extension_to_string".}
   ## Translate raw extension bytes to a string.
@@ -114,7 +114,7 @@ proc tobiigazeGazeDataExtensionToString*(
 
 
 proc tobiigazeGazeDataExtensionToBlob*(
-  extension: ptr TobiigazeGazeDataExtension; destination: ptr char; 
+  extension: ptr TobiigazeGazeDataExtension; destination: ptr char;
   capacity: cint; errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_gaze_data_extension_to_blob".}
   ## Translate raw extension bytes to a blob.

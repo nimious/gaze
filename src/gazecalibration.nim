@@ -1,4 +1,4 @@
-# *io-gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
+# *gaze* - Nim bindings for the Tobii Gaze eye tracking SDK.
 #
 # This file is part of the `Nim I/O <http://nimio.us>`_ package collection.
 # See the file LICENSE included in this distribution for licensing details.
@@ -7,7 +7,7 @@
 import gazecallbacktypes, gazedatatypes, gazeerrorcodes
 
 
-proc tobiigazeCalibrationStartAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeCalibrationStartAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_calibration_start_async".}
   ## Acquire the calibration state and clears the temporary calibration buffer.
@@ -21,12 +21,12 @@ proc tobiigazeCalibrationStartAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   callback function (can be `nil`)
 
 
-proc tobiigazeCalibrationStopAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeCalibrationStopAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_calibration_stop_async".}
   ## Release the calibration state. This should always be done when the
   ## calibration is completed.
-  ## 
+  ##
   ## eyeTracker
   ##   An eye tracker instance
   ## callback
@@ -80,7 +80,7 @@ proc tobiigazeCalibrationRemovePointAsync*(eyeTracker: ptr TobiigazeEyeTracker;
 
 
 proc tobiigazeCalibrationComputeAndSetAsync*(
-  eyeTracker: ptr TobiigazeEyeTracker; callback: TobiigazeAsyncCallback; 
+  eyeTracker: ptr TobiigazeEyeTracker; callback: TobiigazeAsyncCallback;
   userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_calibration_compute_and_set_async".}
   ## Compute a calibration based on data in the temporary calibration buffer.
@@ -99,7 +99,7 @@ proc tobiigazeCalibrationComputeAndSetAsync*(
   ## will be returned via the callback.
 
 
-proc tobiigazeGetCalibrationAsync*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeGetCalibrationAsync*(eyeTracker: ptr TobiigazeEyeTracker;
   callback: TobiigazeAsyncCalibrationCallback; userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_calibration_async".}
   ## Get current calibration from the active calibration buffer.
@@ -114,7 +114,7 @@ proc tobiigazeGetCalibrationAsync*(eyeTracker: ptr TobiigazeEyeTracker;
 
 
 proc tobiigazeSetCalibrationAsync*(eyeTracker: ptr TobiigazeEyeTracker;
-  calibration: ptr TobiigazeCalibration; callback: TobiigazeAsyncCallback; 
+  calibration: ptr TobiigazeCalibration; callback: TobiigazeAsyncCallback;
   userData: pointer)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_set_calibration_async".}
   ## Set the specified calibration as the active calibration.
@@ -137,7 +137,7 @@ proc tobiigazeGetCalibration*(eyeTracker: ptr TobiigazeEyeTracker;
   calibration: ptr TobiigazeCalibration; errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_get_calibration".}
   ## Get current calibration from the active calibration buffer.
-  ## 
+  ##
   ## eyeTracker
   ##   An eye tracker instance
   ## calibration
@@ -147,7 +147,7 @@ proc tobiigazeGetCalibration*(eyeTracker: ptr TobiigazeEyeTracker;
   ##   operation was successful, otherwise to an error code (can be `nil`)
 
 
-proc tobiigazeSetCalibration*(eyeTracker: ptr TobiigazeEyeTracker; 
+proc tobiigazeSetCalibration*(eyeTracker: ptr TobiigazeEyeTracker;
                                 calibration: ptr TobiigazeCalibration;
                                 errorCode: ptr TobiigazeErrorCode)
   {.cdecl, dynlib: dllname, importc: "tobiigaze_set_calibration".}
